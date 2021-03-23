@@ -48,3 +48,4 @@ debugpy*.log
 pydevd*.log
 nodeLanguageServer/**
 nodeLanguageServer.*/**
+.sanport.code-workspace
