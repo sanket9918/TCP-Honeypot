@@ -17,18 +17,26 @@ from sanpot import Honeypot
 import sys
 import logging
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.info('test')
-# Config file
-config = 'sanpot.ini'
+# Validate Arguments
+if len(sys.argv) < 2 or sys.argv[1] in ['-h', '--help']:
+    print(__doc__)
+    sys.exit(1)
 
-# ports, log_file
+# Load configuration -  ports, log_file
+config_filepath = sys.argv[1]
 config = configparser.ConfigParser()
 config.read(config)
 
-ports = config.get('default', 'ports', raw=True, fallback="4444,2222,5555")
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.info('test')
+
+# Config file example
+# config = 'sanpot.ini'
+
+ports = config.get('default', 'ports', raw=True, fallback="4444,2222,5555")
+host = config.get('default', 'host', raw=True, fallback="0.0.0.0")
 logfile = config.get('default', 'logfile', raw=True,
                      fallback="sanpot.log")
 
@@ -41,5 +49,5 @@ except Exception as e:
     logger.error("Error parsing ports: %s  \nExiting ", ports)
     sys.exit(1)
 
-honeyport = Honeypot(ports, logfile)
+honeyport = Honeypot(host, ports, logfile)
 honeyport.run()

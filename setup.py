@@ -17,8 +17,6 @@ setup(
     license="MIT",
     packages=['sanpot'],
     zip_safe=False,
-    install_requires=[
-        'docopt'
-    ]
+    install_requires=[]
 
 )
