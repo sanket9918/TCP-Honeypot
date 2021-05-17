@@ -8,7 +8,7 @@ def read_file():
 
 
 setup(
-    name="Sanpot",
+    name="sanpot",
     version="1.0",
     description="TCP Honeypot",
     long_description=read_file(),

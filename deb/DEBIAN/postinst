@@ -1,0 +1,11 @@
+#!/bin/bash
+id -u sanpot &>/dev/null || useradd sanpot
+mkdir -p /home/sanpot
+
+/usr/bin/python3 -m pip uninstall sanpot
+/usr/bin/python3 -m pip install /opt/sanpot-1.0.tar.gz --no-cache-dir
+
+touch /var/log/sanpot.log
+chown -R sanpot:sanpot /var/log/sanpot.log
+
+systemctl enable sanpot

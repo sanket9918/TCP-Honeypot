@@ -1,0 +1,13 @@
+[Unit]
+Description=Sanpot
+After=network.target
+
+[Service]
+Type=simple
+User=sanpot
+WorkingDirectory=/home/sanpot
+ExecStart=/usr/bin/python3 -m sanpot /etc/sanpot.ini
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

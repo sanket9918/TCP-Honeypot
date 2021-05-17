@@ -1,0 +1,7 @@
+package: sanpot
+Version: 1.0.0
+Maintainer: Sanket Mohapatra
+Description: Smart TCP Honeypot
+Homepage: https://github.com/sanket9918/TCP-Honeypot
+Architecture: all
+Depends: python3, python3-pip

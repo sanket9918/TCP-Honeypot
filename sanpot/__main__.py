@@ -13,41 +13,32 @@ Options:
 """
 
 import configparser
-from sanpot import Honeypot
 import sys
-import logging
+from sanpot import HoneyPot
 
-# Validate Arguments
+# Check arguments
 if len(sys.argv) < 2 or sys.argv[1] in ['-h', '--help']:
     print(__doc__)
     sys.exit(1)
 
-# Load configuration -  ports, log_file
+# Load config
 config_filepath = sys.argv[1]
 config = configparser.ConfigParser()
-config.read(config)
+config.read(config_filepath)
 
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.info('test')
-
-# Config file example
-# config = 'sanpot.ini'
-
-ports = config.get('default', 'ports', raw=True, fallback="4444,2222,5555")
+ports = config.get('default', 'ports', raw=True, fallback="8080,8888,9999")
 host = config.get('default', 'host', raw=True, fallback="0.0.0.0")
-logfile = config.get('default', 'logfile', raw=True,
-                     fallback="sanpot.log")
+log_filepath = config.get('default', 'logfile', raw=True,
+                          fallback="/var/log/sanpot.log")
 
-logger.info("Ports : %s" % ports)
-logger.info("Logfile: %s" % logfile)
-
+# Double check ports provided
+ports_list = []
 try:
-    ports = ports.split(',')
+    ports_list = ports.split(',')
 except Exception as e:
-    logger.error("Error parsing ports: %s  \nExiting ", ports)
+    print('[-] Error parsing ports: %s.\nExiting.', ports)
     sys.exit(1)
 
-honeyport = Honeypot(host, ports, logfile)
-honeyport.run()
+# Launch honeypot
+honeypot = HoneyPot(host, ports_list, log_filepath)
+honeypot.run()
