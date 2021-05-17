@@ -49,3 +49,4 @@ pydevd*.log
 nodeLanguageServer/**
 nodeLanguageServer.*/**
 .sanport.code-workspace
+detection/.ipynb_checkpoints
