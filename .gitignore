@@ -50,3 +50,4 @@ nodeLanguageServer/**
 nodeLanguageServer.*/**
 .sanport.code-workspace
 detection/.ipynb_checkpoints
+detection/log-detection/workspace.code-workspace
