@@ -46,14 +46,17 @@ Check the logs at /var/log/sanpot.log
 
 
 To update the documentation
-============================
+----------------------------
 Install Sphinx
+
     pip install sphinx
 
 To initialise from the start:
+
     sphinx quickstart
 
 To build/rebuild the docs :
+
     cd docs 
     make html 
 

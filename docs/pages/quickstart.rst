@@ -46,7 +46,7 @@ Check the logs at /var/log/sanpot.log
 
 
 To update the documentation
-============================
+----------------------------
 Install Sphinx
 
     pip install sphinx
